@@ -16,6 +16,7 @@ public class Product {
 		this.id = totalProducts + 1;
 		this.name = name;
 		this.wholesalerPrice = wholesalerPrice;
+		this.publicPrice = wholesalerPrice * 1.5;
 		this.available = available;
 		this.stock = stock;
 		totalProducts++;
@@ -78,8 +79,8 @@ public class Product {
 	}
 
 	public void expire() {
-		EXPIRATION_RATE = 0.2;
-		this.publicPrice = this.getPublicPrice() * EXPIRATION_RATE;
+		double expirationRate = 0.2;
+		this.publicPrice = this.publicPrice * expirationRate;
 	}
 
     @Override

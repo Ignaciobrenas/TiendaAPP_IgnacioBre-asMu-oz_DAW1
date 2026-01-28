@@ -34,10 +34,12 @@ public class Employee extends Person {
         this.password = password;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }

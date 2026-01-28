@@ -10,11 +10,17 @@ package model;
  */
 public class Amount {
 
-    private static double value;
-    private static String currency;
+    private double value;
+    private String currency;
 
     public Amount(double value) {
         this.value = value;
+        this.currency = "?";
+    }
+
+    public Amount(double value, String currency) {
+        this.value = value;
+        this.currency = currency;
     }
 
     public void setValue(double value) {
@@ -29,8 +35,12 @@ public class Amount {
         return this.currency;
     }
 
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
     public String showAmount() {
-        return value + currency;
+        return value + " " + currency;
     }
 
     @Override

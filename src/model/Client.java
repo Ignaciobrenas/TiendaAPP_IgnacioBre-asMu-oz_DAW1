@@ -36,10 +36,12 @@ public class Client extends Person{
         this.balance = balance;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public void setName(String name) {
         this.name = name;
     }
