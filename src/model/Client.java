@@ -7,12 +7,12 @@ package model;
 import model.Amount;
 
 /**
- *
+ * 
  * @author ignac
  */
 public class Client extends Person{
-    int memberId;
-    Amount balance; 
+    private int memberId;
+    private Amount balance; 
 
     public Client(int memberId, Amount balance, String name) {
         super(name);
@@ -48,7 +48,7 @@ public class Client extends Person{
 
     @Override
     public String toString() {
-        return "Client{" + "memberId=" + memberId + ", balance=" + balance + '}';
+        return "Client{" + "memberId=" + memberId + ", balance=" + balance + ", name=" + name + '}';
     }
     
 }
