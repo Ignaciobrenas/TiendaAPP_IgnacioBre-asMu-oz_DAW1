@@ -7,6 +7,7 @@ import model.Product;
 import model.Sale;
 import java.util.Scanner;
 import model.Amount;
+import model.Employee;
 
 public class Shop {
 
@@ -15,6 +16,7 @@ public class Shop {
     private int numberProducts;
     private static ArrayList<Sale> sales = new ArrayList<>();
     int counterSales = 0;
+    private Employee employee1 = null;
 
     final static double TAX_RATE = 1.04;
 
@@ -33,7 +35,7 @@ public class Shop {
         Shop shop = new Shop();
 
         shop.loadInventory();
-
+        shop.initSession();
         Scanner scanner = new Scanner(System.in);
         int opcion = 0;
         boolean exit = false;
@@ -99,6 +101,37 @@ public class Shop {
 
             }
         } while (!exit);
+    }
+
+    private void initSession() {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Autenticación de empleado");
+
+        boolean authenticated = false;
+
+        while (!authenticated) {
+            System.out.println("Ingrese número de empleado: ");
+            int employeeId = scanner.nextInt();
+
+            System.out.println("Ingrese contraseña: ");
+            String password = scanner.next();
+            scanner.nextLine();
+
+            Employee employee = new Employee(employeeId, password, "Empleado");
+
+            if (employee.login(employeeId, password)) {
+                employee1 = employee;
+                System.out.println("Bienvenido, empleado " + employeeId);
+                System.out.println("Sesión iniciada ");
+                authenticated = true;
+
+            } else {
+                System.out.println("ERROR: Numero de empleado o contraseña incorrectos.");
+
+            }
+        }
     }
 
     /**
