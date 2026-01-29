@@ -5,14 +5,18 @@
 package model;
 
 import model.Amount;
+import main.Payable;
 
 /**
  * 
  * @author ignac
  */
-public class Client extends Person{
+public class Client extends Person implements Payable {
     private int memberId;
-    private Amount balance; 
+    private Amount balance;
+    
+    private static final int MEMBER_ID = 456;
+    private static final double BALANCE = 50.00;
 
     public Client(int memberId, Amount balance, String name) {
         super(name);
@@ -44,6 +48,21 @@ public class Client extends Person{
     @Override
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean pay(Amount amount) {
+        double finalBalance = balance.getValue() - amount.getValue();
+        
+        if (finalBalance > 0) {
+            balance.setValue(finalBalance);
+            return true;
+            
+        } else {
+            
+            return false;
+        }
+        
     }
 
     @Override
