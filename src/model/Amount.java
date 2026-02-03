@@ -11,16 +11,12 @@ package model;
 public class Amount {
 
     private double value;
-    private String currency;
+    private String currency = "euros";
+
+ 
 
     public Amount(double value) {
         this.value = value;
-        this.currency = "?";
-    }
-
-    public Amount(double value, String currency) {
-        this.value = value;
-        this.currency = currency;
     }
 
     public void setValue(double value) {

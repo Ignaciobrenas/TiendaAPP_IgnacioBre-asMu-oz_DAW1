@@ -18,10 +18,10 @@ public class Client extends Person implements Payable {
     private static final int MEMBER_ID = 456;
     private static final double BALANCE = 50.00;
 
-    public Client(int memberId, Amount balance, String name) {
+    public Client(String name) {
         super(name);
-        this.memberId = memberId;
-        this.balance = balance;
+        this.memberId = MEMBER_ID;
+        this.balance = new Amount(BALANCE);
     }
 
     public int getMemberId() {

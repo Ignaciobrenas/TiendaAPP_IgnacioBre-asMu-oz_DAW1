@@ -8,6 +8,7 @@ import model.Sale;
 import java.util.Scanner;
 import model.Amount;
 import model.Employee;
+import model.Client;
 
 public class Shop {
 
@@ -238,12 +239,14 @@ public class Shop {
 
         // ask for client name
         Scanner sc = new Scanner(System.in);
-        System.out.println("Realizar venta, escribir nombre cliente");
-        String client = sc.nextLine();
-
+        System.out.println("Para realizar la venta introduce los datos del cliente");
+        System.out.println("Introduce el nombre del cliente");
+        String name = sc.nextLine();
+        
+        
+        
         // sale product until input name is not 0
         double totalAmount = 0.0;
-        String name = "";
         while (!name.equals("0")) {
             System.out.println("Introduce el nombre del producto, escribir 0 para terminar:");
             name = sc.nextLine();
@@ -271,12 +274,21 @@ public class Shop {
             }
         }
 
-        // show cost total
-        totalAmount = totalAmount * TAX_RATE;
-        cash.setValue(cash.getValue() + totalAmount);
-        System.out.println("Venta realizada con exito, total: " + totalAmount);
-        sales.add(new Sale(client, shoppingcart, new Amount(totalAmount)));
+       
+        // Guardar venta
+        Client client = new Client(name);
+        Sale newSale = new Sale(client, shoppingcart, new Amount(totalAmount));
+        sales.add(newSale);
         counterSales++;
+        // Crear objeto de tipo Client
+         boolean success = client.pay( new Amount(totalAmount));
+         if (success) {
+             System.out.println(client.getBalance());
+        } else {
+             System.out.println(client.getBalance()); 
+             System.out.println("Debes esta cantidad");
+        }
+         
     }
 
     /**
@@ -368,7 +380,7 @@ public class Shop {
         }
 
         System.out.println("Número total de ventas: " + counterSales);
-        System.out.println("Valor total de todas las ventas: " + total + " ?");
+        System.out.println("Valor total de todas las ventas: " + total + " euros");
     }
 
 }
