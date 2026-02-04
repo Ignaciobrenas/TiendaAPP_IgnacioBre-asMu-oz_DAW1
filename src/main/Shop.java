@@ -139,10 +139,10 @@ public class Shop {
      * load initial inventory to shop
      */
     public void loadInventory() {
-        addProduct(new Product("Manzana", 10.00, true, 10));
-        addProduct(new Product("Pera", 20.00, true, 20));
-        addProduct(new Product("Hamburguesa", 30.00, true, 30));
-        addProduct(new Product("Fresa", 5.00, true, 20));
+        addProduct(new Product("Manzana", new Amount (10.00), true, 10));
+        addProduct(new Product("Pera", new Amount (20.00), true, 20));
+        addProduct(new Product("Hamburguesa", new Amount (30.00), true, 30));
+        addProduct(new Product("Fresa", new Amount (5.00), true, 20));
     }
 
     /**
@@ -176,7 +176,7 @@ public class Shop {
         System.out.print("Stock: ");
         int stock = scanner.nextInt();
 
-        addProduct(new Product(name, wholesalerPrice, true, stock));
+        addProduct(new Product(name, new Amount (wholesalerPrice), true, stock));
     }
 
     /**
@@ -259,7 +259,7 @@ public class Shop {
             if (product != null && product.isAvailable()) {
                 productAvailable = true;
                 shoppingcart.add(product);
-                totalAmount += product.getPublicPrice();
+                totalAmount += product.getPublicPrice().getValue();
                 product.setStock(product.getStock() - 1);
                 // if no more stock, set as not available to sale
                 if (product.getStock() == 0) {
